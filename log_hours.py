@@ -52,14 +52,14 @@ enter_pass.place(height=20,width=150,x=10,y=175)
 tkinter.Label(window, font = "verdana 10", text = "Password", bg = "white").place(x=10,y=150)
 
 #custom button
-hurts = tkinter.PhotoImage(file = "log_hours/hurts.png")
+hurts = tkinter.PhotoImage(file = "C:\\Users\\ConMa\\Documents\\Projects\\log-hours\\hurts.png")
 tkinter.Button(window, command = input_info, image = hurts, bg = "white").place(height=45, width = 100, x=75, y = 250)
 
 #add in the pictures for the title and greeting anime girl
-icon = tkinter.PhotoImage(file = "log_hours/network_chan.png")
+icon = tkinter.PhotoImage(file = "C:\\Users\\ConMa\\Documents\\Projects\\log-hours\\network_chan.png")
 tkinter.Label(window, image = icon, bg="white").place(x=175,y=5)
 
-title = tkinter.PhotoImage(file = "log_hours/title.png")
+title = tkinter.PhotoImage(file = "C:\\Users\\ConMa\\Documents\\Projects\\log-hours\\title.png")
 tkinter.Label(window, image = title, bg = "white").place(x=5,y=5)
 
 window.mainloop()
@@ -107,19 +107,19 @@ xpath4 = "//*[@id='PUNCH_TIME_4$" + str(index) + "']"
 
 driver.find_element_by_xpath(xpath1).click()
 driver.find_element_by_xpath(xpath1).clear()
-driver.find_element_by_xpath(xpath1).send_keys("8:30AM")
+driver.find_element_by_xpath(xpath1).send_keys("11:00AM")
 
-driver.find_element_by_xpath(xpath2).click()
-driver.find_element_by_xpath(xpath2).clear()
-driver.find_element_by_xpath(xpath2).send_keys("12:00PM")
-
-driver.find_element_by_xpath(xpath3).click()
-driver.find_element_by_xpath(xpath3).clear()
-driver.find_element_by_xpath(xpath3).send_keys("12:30PM")
+# driver.find_element_by_xpath(xpath2).click()
+# driver.find_element_by_xpath(xpath2).clear()
+# driver.find_element_by_xpath(xpath2).send_keys("12:00PM")
+#
+# driver.find_element_by_xpath(xpath3).click()
+# driver.find_element_by_xpath(xpath3).clear()
+# driver.find_element_by_xpath(xpath3).send_keys("12:30PM")
 
 driver.find_element_by_xpath(xpath4).click()
 driver.find_element_by_xpath(xpath4).clear()
-driver.find_element_by_xpath(xpath4).send_keys("5:00PM")
+driver.find_element_by_xpath(xpath4).send_keys("2:00PM")
 
 xpath5 = "//select[@id='TRC$" + str(index) + "']/option[text()='STE - Regular Pay - Student FICA Ex']"
 driver.find_element_by_xpath(xpath5).click()
