@@ -31,37 +31,35 @@ def input_info():
     window.destroy()
 
 ################################################################################
-#creating window, setting size, setting background
+#creating initial window
 window = tkinter.Tk()
-window.title("Extension Reassignment")
-window.geometry('400x300')
-window.configure(bg = "white")
 window.resizable(False,False)
 
+#configuring main window
+window.title("University of Puget Sound")
+window.geometry('500x295')
+window.configure(bg = "white")
 
-#creation and placement of text inputs
+banner = tkinter.PhotoImage(file = "C:\\Users\\ConMa\\Documents\\Projects\\log-hours\\ups_banner.png")
+tkinter.Label(window, image = banner, bg = "white").place(x=-5,y=-5)
+
+tkinter.Label(window,font = "verdana 12", text = "Log Work Hours", bg = "white").place(x=225,y=70)
 
 #username
-enter_username = tkinter.Entry(window)
-enter_username.place(height=20,width=150,x=10,y=125)
-tkinter.Label(window,font = "verdana 10", text = "Username", bg = "white").place(x=10,y=100)
+enter_username = tkinter.Entry(window, borderwidth = 3, font = "verdana 10")
+enter_username.place(height=25,width=150,x=225,y=125)
+tkinter.Label(window,font = "verdana 8", text = "Username:", bg = "white").place(x=225,y=105)
 
 #password
-enter_pass = tkinter.Entry(window, show="*")
-enter_pass.place(height=20,width=150,x=10,y=175)
-tkinter.Label(window, font = "verdana 10", text = "Password", bg = "white").place(x=10,y=150)
+enter_pass = tkinter.Entry(window, show="\u2022", borderwidth = 3)
+enter_pass.place(height=25,width=150,x=225,y=175)
+tkinter.Label(window, font = "verdana 8", text = "Password:", bg = "white").place(x=225,y=155)
 
 #custom button
-hurts = tkinter.PhotoImage(file = "C:\\Users\\ConMa\\Documents\\Projects\\log-hours\\hurts.png")
-tkinter.Button(window, command = input_info, image = hurts, bg = "white").place(height=45, width = 100, x=75, y = 250)
+login = tkinter.PhotoImage(file = "C:\\Users\\ConMa\\Documents\\Projects\\log-hours\\signin.PNG")
+tkinter.Button(window, image = login, bg = "white", command = input_info, borderwidth = 0, cursor = "hand2").place(height=24, width = 90, x=225, y = 210)
 
-#add in the pictures for the title and greeting anime girl
-icon = tkinter.PhotoImage(file = "C:\\Users\\ConMa\\Documents\\Projects\\log-hours\\network_chan.png")
-tkinter.Label(window, image = icon, bg="white").place(x=175,y=5)
-
-title = tkinter.PhotoImage(file = "C:\\Users\\ConMa\\Documents\\Projects\\log-hours\\title.png")
-tkinter.Label(window, image = title, bg = "white").place(x=5,y=5)
-
+#initiate gui
 window.mainloop()
 ################################################################################
 
@@ -109,13 +107,13 @@ driver.find_element_by_xpath(xpath1).click()
 driver.find_element_by_xpath(xpath1).clear()
 driver.find_element_by_xpath(xpath1).send_keys("11:00AM")
 
-# driver.find_element_by_xpath(xpath2).click()
-# driver.find_element_by_xpath(xpath2).clear()
-# driver.find_element_by_xpath(xpath2).send_keys("12:00PM")
-#
-# driver.find_element_by_xpath(xpath3).click()
-# driver.find_element_by_xpath(xpath3).clear()
-# driver.find_element_by_xpath(xpath3).send_keys("12:30PM")
+driver.find_element_by_xpath(xpath2).click()
+driver.find_element_by_xpath(xpath2).clear()
+driver.find_element_by_xpath(xpath2).send_keys("12:00PM")
+
+driver.find_element_by_xpath(xpath3).click()
+driver.find_element_by_xpath(xpath3).clear()
+driver.find_element_by_xpath(xpath3).send_keys("12:30PM")
 
 driver.find_element_by_xpath(xpath4).click()
 driver.find_element_by_xpath(xpath4).clear()
@@ -124,4 +122,4 @@ driver.find_element_by_xpath(xpath4).send_keys("2:00PM")
 xpath5 = "//select[@id='TRC$" + str(index) + "']/option[text()='STE - Regular Pay - Student FICA Ex']"
 driver.find_element_by_xpath(xpath5).click()
 
-driver.find_element_by_xpath("//*[@id='TL_LINK_WRK_SUBMIT_PB$418$']").click()
+#driver.find_element_by_xpath("//*[@id='TL_LINK_WRK_SUBMIT_PB$418$']").click()
