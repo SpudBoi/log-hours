@@ -26,6 +26,8 @@ def input_info():
     password = enter_pass.get()
     global username
     username = enter_username.get()
+    global choice
+    choice = v.get()
 
     #closing the window
     window.destroy()
@@ -56,10 +58,15 @@ def execute_logging():
 
     week_days = ["Mon", "Tue", "Wed", "Thu", "Fri"]
 
-    # //*[@id="win0divDAY_OF_WK_DISPLAY$0"] //*[@id="win0divPUNCH_DATE_DISPLAY$0"] //*[@id="PUNCH_TIME_1$0"] //*[@id="PUNCH_TIME_2$0"] //*[@id="TRC$0"]
-    # //*[@id="win0divDAY_OF_WK_DISPLAY$1"] //*[@id="win0divPUNCH_DATE_DISPLAY$1"] //*[@id="PUNCH_TIME_1$1"] //*[@id="PUNCH_TIME_2$1"] //*[@id="TRC$1"]
     frame = driver.find_element_by_xpath("//*[@id='main_target_win0']")
     driver.switch_to.frame(frame)
+
+    if choice == 0:
+        driver.find_element_by_xpath("//*[@id='LAST_NAME$1']").click()
+    elif choice == 1:
+        driver.find_element_by_xpath("//*[@id='LAST_NAME$0']").click()
+
+    time.sleep(1)
     index = -1
     for i in range(0,17):
         xpath = "//*[@id='PUNCH_DATE_DISPLAY$" + str(i) + "']"
@@ -74,7 +81,10 @@ def execute_logging():
 
     driver.find_element_by_xpath(xpath1).click()
     driver.find_element_by_xpath(xpath1).clear()
-    driver.find_element_by_xpath(xpath1).send_keys("11:00AM")
+    if choice == 0:
+        driver.find_element_by_xpath(xpath1).send_keys("11:00AM")
+    else:
+        driver.find_element_by_xpath(xpath1).send_keys("7:00PM")
 
     # driver.find_element_by_xpath(xpath2).click()
     # driver.find_element_by_xpath(xpath2).clear()
@@ -86,13 +96,17 @@ def execute_logging():
 
     driver.find_element_by_xpath(xpath4).click()
     driver.find_element_by_xpath(xpath4).clear()
-    driver.find_element_by_xpath(xpath4).send_keys("2:00PM")
+    if choice == 0:
+        driver.find_element_by_xpath(xpath4).send_keys("2:00PM")
+    else:
+        driver.find_element_by_xpath(xpath4).send_keys("9:00PM")
 
     xpath5 = "//select[@id='TRC$" + str(index) + "']/option[text()='STE - Regular Pay - Student FICA Ex']"
     driver.find_element_by_xpath(xpath5).click()
 
     driver.find_element_by_xpath("//*[@id='TL_LINK_WRK_SUBMIT_PB$418$']").click()
     time.sleep(10)
+    driver.quit()
 
 ################################################################################
 #creating initial window
@@ -104,24 +118,28 @@ window.title("University of Puget Sound")
 window.geometry('500x295')
 window.configure(bg = "white")
 
-banner = tkinter.PhotoImage(file = "C:\\Users\\ConMa\\Documents\\Projects\\log-hours\\ups_banner.png")
+banner = tkinter.PhotoImage(file = "C:\\Users\\nettechs\\Desktop\\Code\\log_hours\\ups_banner.png")
 tkinter.Label(window, image = banner, bg = "white").place(x=-5,y=-5)
 
-tkinter.Label(window,font = "verdana 12", text = "Log Work Hours", bg = "white").place(x=225,y=70)
+tkinter.Label(window,font = "verdana 12", text = "Log Work Hours", bg = "white").place(x=225,y=50)
 
 #username
 enter_username = tkinter.Entry(window, borderwidth = 3, font = "verdana 10")
-enter_username.place(height=25,width=150,x=225,y=125)
-tkinter.Label(window,font = "verdana 8", text = "Username:", bg = "white").place(x=225,y=105)
+enter_username.place(height=25,width=150,x=225,y=105)
+tkinter.Label(window,font = "verdana 8", text = "Username:", bg = "white").place(x=225,y=85)
 
 #password
 enter_pass = tkinter.Entry(window, show="\u2022", borderwidth = 3)
-enter_pass.place(height=25,width=150,x=225,y=175)
-tkinter.Label(window, font = "verdana 8", text = "Password:", bg = "white").place(x=225,y=155)
+enter_pass.place(height=25,width=150,x=225,y=155)
+tkinter.Label(window, font = "verdana 8", text = "Password:", bg = "white").place(x=225,y=135)
 
 #custom button
-login = tkinter.PhotoImage(file = "C:\\Users\\ConMa\\Documents\\Projects\\log-hours\\signin.PNG")
-tkinter.Button(window, image = login, bg = "white", command = input_info, borderwidth = 0, cursor = "hand2").place(height=24, width = 90, x=225, y = 210)
+login = tkinter.PhotoImage(file = "C:\\Users\\nettechs\\Desktop\\Code\\log_hours\\signin.png")
+tkinter.Button(window, image = login, bg = "white", command = input_info, borderwidth = 0, cursor = "hand2").place(height=24, width = 90, x=220, y = 240)
+
+v = tkinter.IntVar()
+tkinter.Radiobutton(window, text = "Network Technician", variable = v, value = 0, bg = "white",font = "verdana 8").place(x = 220, y = 185)
+tkinter.Radiobutton(window, text = "Math Tutor", variable = v, value = 1, bg = "white",font = "verdana 8").place(x = 220, y = 205)
 
 #initiate gui
 window.mainloop()
